@@ -1,3 +1,0 @@
-# B
-
-Enable Automerge
