@@ -35,5 +35,5 @@ jobs:
         run: echo "Pull request workflow run for PR ${{ github.head_ref }} because of ${{ github.base_ref }}"
 
       - name: Build and push scheduled image
-        if: github.event.schedule == '0 15 * * 1-5'
+        if: github.event.schedule == '2 15 * * 1-5'
         run: echo "Scheduled (nightly) workflow run"
