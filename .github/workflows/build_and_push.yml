@@ -1,0 +1,39 @@
+name: Build and push Docker image
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - edited
+      - synchronize
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+  schedule:
+    - cron: '0 14 * * 1-5'
+
+jobs:
+  build-and-push-container:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build and push latest image
+        if: ${{ vars.GITHUB_REF_TYPE }} == branch && ${{ vars.GITHUB_REF_NAME }} == master
+        run: echo "${{ vars.GITHUB_REF_NAME }} branch push workflow run"
+
+      - name: Build and push tag image
+        if: ${{ vars.GITHUB_REF_TYPE }} == tag
+        run: echo "Tag push workflow run for tag ${{ vars.GITHUB_REF_NAME }}"
+
+      - name: Build and push pull request image
+        if: ${{ vars.GITHUB_BASE_REF }}
+        run: echo "Pull request workflow run for PR ${{ vars.GITHUB_REF_NAME }}"
+
+      - name: Build and push scheduled image
+        if: github.event.schedule == '0 15 * * 1-5'
+        run: echo "Scheduled (nightly) workflow run"
