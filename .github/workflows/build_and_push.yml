@@ -27,7 +27,7 @@ jobs:
         run: echo "${{ github.ref_name }} branch push workflow run for ${{ github.ref_type }}"
 
       - name: Build and push tag image
-        if: ${{ github.ref_type }} == tag
+        if: ${{ github.ref_type == 'tag' }}
         run: echo "Tag push workflow run for tag ${{ github.ref_name }}"
 
       - name: Build and push pull request image
