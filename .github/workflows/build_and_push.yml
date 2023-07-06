@@ -13,7 +13,7 @@ on:
     tags:
       - '*'
   schedule:
-    - cron: '36 7 * * 1-5'
+    - cron: '40 7 * * 1-5'
 
 jobs:
   build-and-push-container:
@@ -35,5 +35,5 @@ jobs:
         run: echo "Pull request workflow run for PR ${{ github.head_ref }} because of ${{ github.base_ref }}"
 
       - name: Build and push scheduled image
-        if: github.event.schedule == '36 7 * * 1-5'
+        if: github.event.schedule == '40 7 * * 1-5'
         run: echo "Scheduled (nightly) workflow run"
