@@ -36,4 +36,4 @@ jobs:
 
       - name: Build and push scheduled image
         if: ${{ github.event.name == 'schedule' }}
-        run: echo "Scheduled (nightly) workflow run"
+        run: echo "Scheduled (nightly) workflow run on ${{ github.event.name }}"
